@@ -26,9 +26,17 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Hub') {
+        // 🔴 THIS IS THE IMPORTANT PART
+        stage('Docker Login + Push') {
             steps {
-                bat 'docker push %IMAGE_NAME%'
+                withCredentials([usernamePassword(
+                    credentialsId: 'docker-cred',   // 👈 use your ID
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
+                )]) {
+                    bat 'docker login -u %USER% -p %PASS%'
+                    bat 'docker push %IMAGE_NAME%'
+                }
             }
         }
 
