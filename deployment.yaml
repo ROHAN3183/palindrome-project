@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: palindrome-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: palindrome
+  template:
+    metadata:
+      labels:
+        app: palindrome
+    spec:
+      containers:
+      - name: palindrome
+        image: palindrome-app
+        imagePullPolicy: Never
