@@ -7,12 +7,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/ROHAN3183/palindrome-project.git'
-            }
-        }
-
         stage('Compile Java') {
             steps {
                 sh 'javac Palindrome.java'
