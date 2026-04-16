@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'palindrome-app'
+        KUBECONFIG = 'C:\\ProgramData\\Jenkins\\.kube\\config'
     }
 
     stages {
