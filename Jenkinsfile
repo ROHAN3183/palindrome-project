@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'palindrome-app'
+        IMAGE_NAME = 'rohan65/palindrome-app'
         KUBECONFIG = 'C:\\ProgramData\\Jenkins\\.kube\\config'
     }
 
@@ -23,6 +23,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t %IMAGE_NAME% .'
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                bat 'docker push %IMAGE_NAME%'
             }
         }
 
